@@ -3,6 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
+declare global {
+  interface Window {
+    onLicenseSuspended?: (status: unknown) => void;
+  }
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,17 +32,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         {children}
+        {/* Register onLicenseSuspended before the guard script loads */}
+        <Script id="license-guard-setup" strategy="beforeInteractive">
+          {`window.onLicenseSuspended = function(status) {
+            console.warn('License suspended:', status);
+          };`}
+        </Script>
         <Script
           src="https://license-tau-nine.vercel.app/guard.js"
           data-api-key="6200e059-17d6-43c6-a0d8-2012e383d549"
           strategy="afterInteractive"
-          onLoad={() => {
-            if (typeof window !== "undefined") {
-              window.onLicenseSuspended = (status: unknown) => {
-                console.warn("License suspended:", status);
-              };
-            }
-          }}
         />
       </body>
     </html>
