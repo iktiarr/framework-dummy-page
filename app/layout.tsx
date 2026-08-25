@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,7 +24,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Script
+          src="https://license-tau-nine.vercel.app/guard.js"
+          data-api-key="6200e059-17d6-43c6-a0d8-2012e383d549"
+          strategy="afterInteractive"
+          onLoad={() => {
+            if (typeof window !== "undefined") {
+              window.onLicenseSuspended = (status: unknown) => {
+                console.warn("License suspended:", status);
+              };
+            }
+          }}
+        />
+      </body>
     </html>
   );
 }
