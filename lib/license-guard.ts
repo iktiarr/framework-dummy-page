@@ -3,7 +3,6 @@ import { initGuard } from '@masdannn/license-guard';
 
 if (typeof window !== 'undefined') {
   initGuard({
-    apiKey: 'LG-9250b9ef7630d5ce9cb63a28704fc0830f52779264d66690',
-    endpoint: 'https://license-tau-nine.vercel.app',
+    key: 'LGK_eCUyNmR2bkNseiUyNiUzRiUyNEtPJTI0YiU2MCU2MGQ0aW0lM0IlM0QwJTNGM2slM0ElNjAlNjA3JTNFJTNFbTFiJTYwJTYwNGQlM0ZtJTYwZ2MlM0ZiJTNDbzIlM0NmY2VsbWYxNWMxMSUyQiUyRiUyNiU2MGhjeGZqanElMjQlM0QqYXdwdXUlM0QnJTI2b21mY2klN0JsLnBkcypmJTYwbWElMkJwYnpqZmglMkJnd3glMkIlMkYlMjZhaWppJTYwbSUyNiUzRiUyNGMlN0RkbiU3RChyYiU3QiU3RGpqYiUyQndpbmYqa2NzZCU2MGUlN0QlMkJnd3glMkJ+',
   });
 }
